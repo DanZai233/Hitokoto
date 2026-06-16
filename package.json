@@ -9,7 +9,8 @@
     "start": "vite preview --host 0.0.0.0",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "data:export-google": "tsx scripts/export-firestore-quotes.ts"
+    "data:export-google": "tsx scripts/export-firestore-quotes.ts",
+    "data:import-hitokoto": "tsx scripts/import-hitokoto-bundle.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
