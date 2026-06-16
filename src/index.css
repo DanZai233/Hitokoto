@@ -1,10 +1,108 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
-
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Noto Serif SC", "Songti SC", "STSong", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Zen Mode Active - Smoothly Hide Headers and side rails */
+html.zen-mode-active header,
+html.zen-mode-active .hidden.md\:flex.absolute.left-10,
+html.zen-mode-active .hidden.md\:flex.absolute.right-10 {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Transition rule on normal state too for seamlessness */
+header,
+.hidden.md\:flex.absolute.left-10,
+.hidden.md\:flex.absolute.right-10 {
+  transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Bulletproof Class-Based Dark Mode Fallback */
+html.dark, .dark {
+  color-scheme: dark;
+  background-color: #050505 !important;
+  color: #ffffff !important;
+}
+
+html.dark body {
+  background-color: #050505 !important;
+}
+
+.dark .bg-zinc-50 {
+  background-color: #050505 !important;
+}
+
+.dark .text-zinc-900 {
+  color: #ffffff !important;
+}
+
+.dark .text-black\/50 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.dark .text-black\/40 {
+  color: rgba(255, 255, 255, 0.60) !important;
+}
+
+.dark .text-black\/30 {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.dark .text-black\/10 {
+  color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.dark .text-black\/5 {
+  color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dark .border-black\/10 {
+  border-color: rgba(255, 255, 255, 0.20) !important;
+}
+
+.dark .border-black\/5 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dark .bg-white\/90 {
+  background-color: rgba(18, 18, 18, 0.9) !important;
+}
+
+.dark .bg-zinc-100 {
+  background-color: rgba(24, 24, 27, 0.9) !important;
+}
+
+.dark .bg-zinc-50 {
+  background-color: rgba(9, 9, 11, 0.9) !important;
+}
+
+.dark .bg-black\/5 {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .text-zinc-500 {
+  color: #d4d4d8 !important;
+}
+
+.dark .hover\:bg-zinc-50:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .text-zinc-805 {
+  color: #ffffff !important;
+}
+
+.dark .text-zinc-800 {
+  color: #ffffff !important;
+}
+
+.dark .shadow-2xl {
+  shadow: 0 25px 50px -12px rgb(0 0 0 / 0.75);
 }
