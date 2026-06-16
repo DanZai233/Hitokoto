@@ -817,6 +817,29 @@ export function Home() {
             一言 · 浮光掠影
           </div>
         </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] md:text-xs font-sans tracking-[0.22em] text-black/35 dark:text-white/30">
+          <a
+            href="https://github.com/DanZai233/Hitokoto"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          >
+            GitHub 源码
+          </a>
+          <span className="opacity-40">·</span>
+          <span>句库致谢</span>
+          <a
+            href="https://github.com/hitokoto-osc/sentences-bundle"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          >
+            hitokoto-osc/sentences-bundle
+          </a>
+          <span className="opacity-40">·</span>
+          <span>AGPL-3.0</span>
+        </div>
       </footer>
 
       {/* PERSISTENT FAVORITES DRAWER ("时光之匣") */}

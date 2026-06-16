@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { ApiDocs } from './pages/ApiDocs';
-import { Code, Menu, X } from 'lucide-react';
+import { Code, ExternalLink, Github, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
@@ -57,6 +57,24 @@ export default function App() {
               <Code className="w-3.5 h-3.5" />
               开放接口
             </Link>
+            <a
+              href="https://github.com/DanZai233/Hitokoto"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:opacity-100 transition-opacity flex items-center gap-2"
+            >
+              <Github className="w-3.5 h-3.5" />
+              GitHub
+            </a>
+            <a
+              href="https://github.com/hitokoto-osc/sentences-bundle"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:opacity-100 transition-opacity flex items-center gap-2"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              来源
+            </a>
             <button 
               onClick={() => setDarkMode(!darkMode)}
               className="hover:opacity-100 transition-opacity ml-2 border border-zinc-300 dark:border-white/10 px-3 py-1.5 rounded-full text-[11px] leading-none text-zinc-600 dark:text-[#E0E0E0] hover:bg-zinc-100 dark:hover:bg-white/5 transition-all duration-300"
@@ -84,6 +102,30 @@ export default function App() {
                   开放接口
                 </span>
               </Link>
+              <a
+                onClick={() => setMenuOpen(false)}
+                href="https://github.com/DanZai233/Hitokoto"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </span>
+              </a>
+              <a
+                onClick={() => setMenuOpen(false)}
+                href="https://github.com/hitokoto-osc/sentences-bundle"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <ExternalLink className="w-4 h-4" />
+                  来源与致谢
+                </span>
+              </a>
               <button 
                 onClick={() => { setDarkMode(!darkMode); setMenuOpen(false); }}
                 className="p-3 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 transition-colors text-left"
