@@ -1,7 +1,7 @@
 import React from 'react';
 
 export function ApiDocs() {
-  const codeString = `
+  const randomCode = `
 fetch('https://your-app-url.com/api/random')
   .then(response => response.json())
   .then(data => console.log(data));
@@ -26,7 +26,7 @@ fetch('https://your-app-url.com/api/random')
 
         <h3 className="text-sm font-medium tracking-widest text-zinc-800 dark:text-zinc-200 mb-3">GET /api/random</h3>
         <div className="bg-zinc-50 dark:bg-black/50 rounded-lg p-4 mb-6 overflow-x-auto text-xs font-mono text-zinc-800 dark:text-zinc-300 border border-zinc-100 dark:border-white/5">
-          <pre>{codeString.trim()}</pre>
+          <pre>{randomCode.trim()}</pre>
         </div>
 
         <h3 className="text-sm font-medium tracking-widest text-zinc-800 dark:text-zinc-200 mb-3">响应数据结构</h3>

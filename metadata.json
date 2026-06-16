@@ -1,6 +1,5 @@
 {
-  "name": "一言 (Hitokoto)",
-  "description": "A minimalist random quote API and web interface with community submission and admin review capabilities.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "一言 PRO (Hitokoto)",
+  "description": "A minimalist random quote API and web interface running on Vercel Functions with a static quote corpus.",
+  "requestFramePermissions": []
 }

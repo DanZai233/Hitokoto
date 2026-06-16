@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { ApiDocs } from './pages/ApiDocs';
-import { Moon, Sun, Feather, Code, Shield, Quote, Menu, X } from 'lucide-react';
+import { Code, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
@@ -54,7 +54,8 @@ export default function App() {
 
           <div className="hidden md:flex items-center gap-8 text-xs tracking-widest font-sans opacity-60">
             <Link to="/api-docs" className="hover:opacity-100 transition-opacity flex items-center gap-2">
-               开放接口
+              <Code className="w-3.5 h-3.5" />
+              开放接口
             </Link>
             <button 
               onClick={() => setDarkMode(!darkMode)}
@@ -78,7 +79,10 @@ export default function App() {
               className="absolute top-20 left-4 right-4 z-40 bg-zinc-100/90 dark:bg-zinc-900/80 backdrop-blur-md shadow-2xl rounded-2xl p-6 flex flex-col gap-4 border border-zinc-200 dark:border-white/10 md:hidden font-sans tracking-widest text-sm"
             >
               <Link onClick={() => setMenuOpen(false)} to="/api-docs" className="p-3 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 transition-colors">
-                 开放接口
+                <span className="flex items-center gap-2">
+                  <Code className="w-4 h-4" />
+                  开放接口
+                </span>
               </Link>
               <button 
                 onClick={() => { setDarkMode(!darkMode); setMenuOpen(false); }}
