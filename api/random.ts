@@ -16,6 +16,17 @@ function sendError(res: any, error: unknown) {
   });
 }
 
+function getCategoryParam(req: any) {
+  const url = new URL(typeof req.url === 'string' ? req.url : '/api/random', 'http://localhost');
+  const categories = url.searchParams.getAll('category');
+
+  if (categories.length === 0) {
+    return undefined;
+  }
+
+  return categories.length === 1 ? categories[0] : categories;
+}
+
 export default async function handler(req: any, res: any) {
   setCorsHeaders(res);
 
@@ -30,7 +41,7 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const quote = getRandomQuote(req.query?.category);
+    const quote = getRandomQuote(getCategoryParam(req));
     res.status(200).json(quote);
   } catch (error) {
     sendError(res, error);
