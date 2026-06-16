@@ -6,8 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
-import { Submit } from './pages/Submit';
-import { Admin } from './pages/Admin';
 import { ApiDocs } from './pages/ApiDocs';
 import { Moon, Sun, Feather, Code, Shield, Quote, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -55,18 +53,12 @@ export default function App() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8 text-xs tracking-widest font-sans opacity-60">
-            <Link to="/submit" className="hover:opacity-100 transition-opacity flex items-center gap-2">
-               投稿发现
-            </Link>
             <Link to="/api-docs" className="hover:opacity-100 transition-opacity flex items-center gap-2">
                开放接口
             </Link>
-            <Link to="/admin" className="hover:opacity-100 transition-opacity flex items-center gap-2">
-               审核管理
-            </Link>
             <button 
               onClick={() => setDarkMode(!darkMode)}
-              className="hover:opacity-100 transition-opacity ml-2"
+              className="hover:opacity-100 transition-opacity ml-2 border border-zinc-300 dark:border-white/10 px-3 py-1.5 rounded-full text-[11px] leading-none text-zinc-600 dark:text-[#E0E0E0] hover:bg-zinc-100 dark:hover:bg-white/5 transition-all duration-300"
             >
               {darkMode ? '日间模式' : '夜间模式'}
             </button>
@@ -83,16 +75,10 @@ export default function App() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-20 left-4 right-4 z-40 bg-zinc-100 dark:bg-zinc-900/80 backdrop-blur-md shadow-2xl rounded-2xl p-6 flex flex-col gap-4 border border-zinc-200 dark:border-white/10 md:hidden font-sans tracking-widest text-sm"
+              className="absolute top-20 left-4 right-4 z-40 bg-zinc-100/90 dark:bg-zinc-900/80 backdrop-blur-md shadow-2xl rounded-2xl p-6 flex flex-col gap-4 border border-zinc-200 dark:border-white/10 md:hidden font-sans tracking-widest text-sm"
             >
-              <Link onClick={() => setMenuOpen(false)} to="/submit" className="p-3 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 transition-colors">
-                 投稿发现
-              </Link>
               <Link onClick={() => setMenuOpen(false)} to="/api-docs" className="p-3 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 transition-colors">
                  开放接口
-              </Link>
-              <Link onClick={() => setMenuOpen(false)} to="/admin" className="p-3 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 transition-colors">
-                 审核管理
               </Link>
               <button 
                 onClick={() => { setDarkMode(!darkMode); setMenuOpen(false); }}
@@ -118,8 +104,6 @@ export default function App() {
         <main className="flex-1 flex flex-col relative w-full h-full pt-20 z-10">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/submit" element={<Submit />} />
-            <Route path="/admin" element={<Admin />} />
             <Route path="/api-docs" element={<ApiDocs />} />
           </Routes>
         </main>
