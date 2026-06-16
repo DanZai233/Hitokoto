@@ -459,5 +459,425 @@ export const corpus = [
     "text": "不要害怕失败，失败是成功的垫脚石。",
     "author": "网络",
     "category": "internet"
+  },
+  {
+    "text": "慢慢来，也是一种抵达。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "把今天过稳，明天才有回声。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "心安处，风也温柔。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "愿你有路可走，也有灯可回。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "别急，花会开，答案也会来。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "把小事做好，生活就会发光。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "天亮之前，先照顾好自己。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "善良要有锋芒，温柔也要有边界。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "所有沉默，都在等待一个合适的春天。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "晚一点没关系，抵达就好。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "把烦恼放轻，把日子过亮。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "你已经走了很远，不必否认自己。",
+    "author": "一言 PRO",
+    "category": "internet"
+  },
+  {
+    "text": "纸页翻过，风也有了去处。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "月光落笔，万物成诗。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "旧书不语，却替岁月作证。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "人间烟火，是最短的诗。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "山河辽阔，一字也可安身。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "把孤独写软，夜就不那么长。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "故事走远，余温还在掌心。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "春天不必解释，它自会抵达。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "一盏灯，也能抵住长夜。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "有些告别，是为了让回忆完整。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "风替远方写信，云替故人回头。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "愿每次落笔，都靠近真实。",
+    "author": "一言 PRO",
+    "category": "literature"
+  },
+  {
+    "text": "答案越轻，问题越重。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "自由不是无边，而是自知。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "看见局限，才开始拥有选择。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "沉默有时比结论更诚实。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "向内走，也能抵达远方。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "真正的清醒，是知道自己会迷路。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "世界很大，心也需要秩序。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "愿望塑造方向，行动塑造命运。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "接受无常，才握得住当下。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "光不解释，只是照亮。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "人会被答案安慰，也会被问题唤醒。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "边界不是墙，是清楚的爱。",
+    "author": "一言 PRO",
+    "category": "philosophy"
+  },
+  {
+    "text": "星光很远，少年仍向前。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "约定不响，却一直在心里发光。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "风吹过制服，也吹过未说出口的话。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "再小的勇气，也能点亮番剧般的夏天。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "樱花落下时，愿望正好醒来。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "世界线再乱，也要握紧现在。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "朝阳升起，冒险重新读档。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "把眼泪擦干，下一集还要继续。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "有同伴的路，连雨声都像片尾曲。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "星空之下，梦想不会掉帧。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "那束光，刚好照见你奔跑的样子。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "青春会散场，热血不会退色。",
+    "author": "一言 PRO",
+    "category": "anime"
+  },
+  {
+    "text": "镜头之外，人生仍在开拍。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "黄昏收场，故事未完。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "每个转身，都可能是新的长镜头。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "沉默的对白，最容易被记住。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "散场以后，灯光还在心里。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "人生没有彩排，幸好还有重来。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "一场雨，洗亮了旧街的结局。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "慢镜头里，遗憾也变得温柔。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "每一次回眸，都是命运剪下的光。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "故事不必圆满，真诚就够动人。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "夜色开场，黎明负责谢幕。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "银幕会暗，心里的画面不会。",
+    "author": "一言 PRO",
+    "category": "movie"
+  },
+  {
+    "text": "低音落下，心事终于安静。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "风经过窗台，唱了一小段副歌。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "旧旋律响起，时间便慢了半拍。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "把难过调低，把希望开大。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "耳机里有光，路就不算长。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "节拍向前，阴天也会转调。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "一首歌的距离，刚好够想念。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "和声很轻，却托住了夜。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "愿你的心跳，永远有自己的节奏。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "城市太吵，幸好音乐会拥抱。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "把风写进歌里，把你藏进尾奏。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "沉默也有旋律，只是更靠近心。",
+    "author": "一言 PRO",
+    "category": "music"
+  },
+  {
+    "text": "别怕重开，经验会留下。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "地图很大，先点亮脚下。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "血条见底，也要留一格勇气。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "下一关，总会奖励坚持的人。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "失败不是结算，只是读档。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "装备会换，初心别卖。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "迷雾散开前，先守住方向。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "队友还在，战斗就没结束。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "慢慢升级，也能打到终章。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "不要空过每一次存档点。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "路标会亮，任务会清。",
+    "author": "一言 PRO",
+    "category": "game"
+  },
+  {
+    "text": "愿你每次出发，都带着满格热爱。",
+    "author": "一言 PRO",
+    "category": "game"
   }
 ] satisfies CorpusQuote[];
