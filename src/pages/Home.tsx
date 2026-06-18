@@ -31,6 +31,21 @@ const CATEGORIES = [
   { id: 'internet', label: '网生' },
 ];
 
+type AmbientStyle = {
+  bg1: string;
+  bg2: string;
+  gradient: string;
+};
+
+type BackgroundPresetId = 'auto' | 'paper' | 'ink' | 'sakura' | 'sea' | 'dusk';
+
+type BackgroundPreset = {
+  id: BackgroundPresetId;
+  name: string;
+  swatch: string;
+  ambient?: AmbientStyle;
+};
+
 const POSTER_THEMES = [
   { 
     id: 'minimal', 
@@ -90,7 +105,7 @@ const POSTER_THEMES = [
   }
 ];
 
-const getAmbientStyles = (cat: string, darkMode: boolean) => {
+const getAmbientStyles = (cat: string, darkMode: boolean): AmbientStyle => {
   if (darkMode) {
     switch (cat) {
       case 'philosophy':
@@ -172,9 +187,68 @@ const getAmbientStyles = (cat: string, darkMode: boolean) => {
   }
 };
 
+const BACKGROUND_PRESETS: BackgroundPreset[] = [
+  {
+    id: 'auto',
+    name: '随境',
+    swatch: 'linear-gradient(135deg, #fafafa 0%, #f472b6 48%, #09090b 100%)',
+  },
+  {
+    id: 'paper',
+    name: '素纸',
+    swatch: 'linear-gradient(135deg, #fafafa 0%, #e7e5e4 100%)',
+    ambient: {
+      bg1: 'rgba(214, 211, 209, 0.36)',
+      bg2: 'rgba(244, 244, 245, 0.28)',
+      gradient: 'from-[#fafafa] via-[#f5f5f4]/70 to-[#f8fafc]',
+    },
+  },
+  {
+    id: 'ink',
+    name: '夜墨',
+    swatch: 'linear-gradient(135deg, #020617 0%, #1e1b4b 100%)',
+    ambient: {
+      bg1: 'rgba(59, 130, 246, 0.12)',
+      bg2: 'rgba(168, 85, 247, 0.10)',
+      gradient: 'from-[#020617] via-[#111827]/70 to-[#09090b]',
+    },
+  },
+  {
+    id: 'sakura',
+    name: '樱雾',
+    swatch: 'linear-gradient(135deg, #fff1f2 0%, #fbcfe8 54%, #ede9fe 100%)',
+    ambient: {
+      bg1: 'rgba(244, 114, 182, 0.12)',
+      bg2: 'rgba(196, 181, 253, 0.14)',
+      gradient: 'from-[#fff1f2] via-[#fdf2f8]/70 to-[#eef2ff]',
+    },
+  },
+  {
+    id: 'sea',
+    name: '青岚',
+    swatch: 'linear-gradient(135deg, #ecfeff 0%, #99f6e4 48%, #bfdbfe 100%)',
+    ambient: {
+      bg1: 'rgba(20, 184, 166, 0.12)',
+      bg2: 'rgba(59, 130, 246, 0.10)',
+      gradient: 'from-[#ecfeff] via-[#f0fdfa]/60 to-[#eff6ff]',
+    },
+  },
+  {
+    id: 'dusk',
+    name: '夕照',
+    swatch: 'linear-gradient(135deg, #fffbeb 0%, #fed7aa 52%, #fbcfe8 100%)',
+    ambient: {
+      bg1: 'rgba(251, 146, 60, 0.12)',
+      bg2: 'rgba(244, 114, 182, 0.10)',
+      gradient: 'from-[#fffbeb] via-[#fff7ed]/65 to-[#fdf2f8]',
+    },
+  },
+];
+
 
 
 export function Home() {
+  const zenCursorTimerRef = useRef<number | null>(null);
   const [quote, setQuote] = useState<Quote | null>(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
@@ -187,6 +261,10 @@ export function Home() {
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
   const [serifFont, setSerifFont] = useState<'serif' | 'sans'>('serif');
+  const [backgroundPreset, setBackgroundPreset] = useState<BackgroundPresetId>(() => {
+    const saved = localStorage.getItem('hitokoto_background_preset') as BackgroundPresetId | null;
+    return BACKGROUND_PRESETS.some((preset) => preset.id === saved) ? saved! : 'auto';
+  });
   const [isZenPlayActive, setIsZenPlayActive] = useState(false);
   const [nextQuote, setNextQuote] = useState<Quote | null>(null);
   const [zenProgress, setZenProgress] = useState(0);
@@ -201,6 +279,7 @@ export function Home() {
   // Interactive UI helpers
   const [isHovering, setIsHovering] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBackgroundMenuOpen, setIsBackgroundMenuOpen] = useState(false);
 
   // Clock display states with local storage config persistence
   const [showClock, setShowClock] = useState(() => {
@@ -242,43 +321,79 @@ export function Home() {
   useEffect(() => {
     if (isZenPlayActive) {
       document.documentElement.classList.add('zen-mode-active');
+      document.body.classList.add('zen-mode-active');
+      document.documentElement.classList.add('zen-cursor-hidden');
+      document.body.classList.add('zen-cursor-hidden');
       setZenProgress(0);
       setIsZenPaused(false);
     } else {
       document.documentElement.classList.remove('zen-mode-active');
+      document.body.classList.remove('zen-mode-active');
+      document.documentElement.classList.remove('zen-cursor-hidden');
+      document.body.classList.remove('zen-cursor-hidden');
     }
 
-    const triggerFullscreen = async () => {
-      try {
-        if (isZenPlayActive) {
-          const docEl = document.documentElement;
-          if (docEl.requestFullscreen && !document.fullscreenElement) {
-            await docEl.requestFullscreen();
-          }
-        } else {
-          if (document.fullscreenElement && document.exitFullscreen) {
-            await document.exitFullscreen();
-          }
-        }
-      } catch (err) {
-        console.warn("自动全屏请求未被完全允许（可能是因为预览运行在 iframe 中），已在当前页面视口内以极简模式渲染。", err);
-      }
+    const hideCursor = () => {
+      if (!isZenPlayActive) return;
+      document.documentElement.classList.add('zen-cursor-hidden');
+      document.body.classList.add('zen-cursor-hidden');
     };
 
-    triggerFullscreen();
+    const revealCursorTemporarily = () => {
+      if (!isZenPlayActive) return;
+      document.documentElement.classList.remove('zen-cursor-hidden');
+      document.body.classList.remove('zen-cursor-hidden');
+      if (zenCursorTimerRef.current) {
+        window.clearTimeout(zenCursorTimerRef.current);
+      }
+      zenCursorTimerRef.current = window.setTimeout(hideCursor, 1500);
+    };
 
     const handleFullscreenChange = () => {
-      // Sync state if manually exiting fullscreen (e.g. hitting Esc)
       if (!document.fullscreenElement && isZenPlayActive) {
-        // Keep active as fallback, handling safety if iframe block occurs
+        setIsZenPlayActive(false);
       }
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('mousemove', revealCursorTemporarily);
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mousemove', revealCursorTemporarily);
+      if (zenCursorTimerRef.current) {
+        window.clearTimeout(zenCursorTimerRef.current);
+        zenCursorTimerRef.current = null;
+      }
       document.documentElement.classList.remove('zen-mode-active');
+      document.body.classList.remove('zen-mode-active');
+      document.documentElement.classList.remove('zen-cursor-hidden');
+      document.body.classList.remove('zen-cursor-hidden');
     };
+  }, [isZenPlayActive]);
+
+  const handleToggleZenPlay = useCallback(async () => {
+    if (isZenPlayActive) {
+      setIsZenPlayActive(false);
+      if (document.fullscreenElement && document.exitFullscreen) {
+        try {
+          await document.exitFullscreen();
+        } catch (err) {
+          console.warn("退出全屏时遇到浏览器限制，已恢复页面内禅境状态。", err);
+        }
+      }
+      return;
+    }
+
+    setIsZenPlayActive(true);
+
+    try {
+      const docEl = document.documentElement;
+      if (docEl.requestFullscreen && !document.fullscreenElement) {
+        await docEl.requestFullscreen();
+      }
+    } catch (err) {
+      console.warn("自动全屏请求未被完全允许（可能是因为预览运行在 iframe 中），已在当前页面视口内以极简模式渲染。", err);
+    }
   }, [isZenPlayActive]);
 
   const handleToggleFont = useCallback(() => {
@@ -286,6 +401,12 @@ export function Home() {
     setSerifFont(nextFont);
     localStorage.setItem('hitokoto_font', nextFont);
   }, [serifFont]);
+
+  const handleChangeBackgroundPreset = useCallback((presetId: BackgroundPresetId) => {
+    setBackgroundPreset(presetId);
+    localStorage.setItem('hitokoto_background_preset', presetId);
+    setIsBackgroundMenuOpen(false);
+  }, []);
 
   // Load favorites from local storage on mount
   useEffect(() => {
@@ -461,6 +582,7 @@ export function Home() {
       target.closest('#poetry-poster-card') ||
       target.closest('.fav-drawer-item') ||
       target.closest('.hud-control-panel') ||
+      target.closest('.background-control-panel') ||
       target.closest('.modal-content-panel') ||
       target.closest('.favorites-drawer-panel')
     ) {
@@ -559,7 +681,8 @@ export function Home() {
   // Determine label for current category
   const currentCategoryLabel = CATEGORIES.find(c => c.id === category)?.label || '全部';
 
-  const ambient = getAmbientStyles(category, isDark);
+  const selectedBackgroundPreset = BACKGROUND_PRESETS.find((preset) => preset.id === backgroundPreset) || BACKGROUND_PRESETS[0];
+  const ambient = selectedBackgroundPreset.ambient || getAmbientStyles(category, isDark);
 
   return (
     <div 
@@ -669,7 +792,7 @@ export function Home() {
           serifFont={serifFont}
           onChangeFont={handleToggleFont}
           isZenPlayActive={isZenPlayActive}
-          onToggleZen={() => setIsZenPlayActive(!isZenPlayActive)}
+          onToggleZen={handleToggleZenPlay}
           showClock={showClock}
           onToggleClock={() => setShowClock(!showClock)}
         />
@@ -690,6 +813,25 @@ export function Home() {
                   className={`px-2.5 py-0.5 rounded-full cursor-pointer transition-all duration-300 ${category === c.id ? 'text-amber-500 dark:text-amber-400 font-medium bg-black/5 dark:bg-white/15' : 'hover:text-zinc-800 dark:hover:text-zinc-200'}`}
                 >
                   {c.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Background selector inside hover HUD */}
+            <div className="background-control-panel flex items-center justify-center flex-wrap gap-1.5 px-4 py-1.5 rounded-full backdrop-blur-2xl border border-black/5 dark:border-white/5 bg-white/30 dark:bg-zinc-900/30 text-[10px] tracking-wider text-zinc-500 font-sans shadow-sm">
+              {BACKGROUND_PRESETS.map((preset) => (
+                <button
+                  key={preset.id}
+                  onClick={() => handleChangeBackgroundPreset(preset.id)}
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full cursor-pointer transition-all duration-300 ${
+                    backgroundPreset === preset.id
+                      ? 'text-amber-500 dark:text-amber-400 font-medium bg-black/5 dark:bg-white/15'
+                      : 'hover:text-zinc-800 dark:hover:text-zinc-200'
+                  }`}
+                  title={`背景：${preset.name}`}
+                >
+                  <span className="w-2.5 h-2.5 rounded-full border border-black/10 dark:border-white/20" style={{ background: preset.swatch }} />
+                  {preset.name}
                 </button>
               ))}
             </div>
@@ -730,7 +872,7 @@ export function Home() {
 
               {/* Exit Zen Play Mode */}
               <button 
-                onClick={() => setIsZenPlayActive(false)}
+                onClick={handleToggleZenPlay}
                 className="text-[10px] tracking-[0.2em] text-red-500/70 hover:text-red-500 dark:text-red-400/70 dark:hover:text-red-400 cursor-pointer flex items-center py-1 px-3 rounded-full hover:bg-red-500/10 transition-all font-sans"
               >
                 退出禅境
@@ -807,6 +949,52 @@ export function Home() {
             <span className="absolute -bottom-6 text-[10px] tracking-[0.3em] font-sans opacity-0 group-hover:opacity-50 transition-opacity whitespace-nowrap">
               换一句 ({currentCategoryLabel})
             </span>
+          </button>
+        </div>
+
+        {/* Background Preset Selector */}
+        <div className="background-control-panel relative flex flex-col items-center justify-center">
+          <AnimatePresence>
+            {isBackgroundMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="absolute bottom-full mb-5 w-56 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl border border-black/5 dark:border-white/5 shadow-2xl rounded-2xl p-2 z-50 grid grid-cols-2 gap-1.5"
+              >
+                {BACKGROUND_PRESETS.map((preset) => (
+                  <button
+                    key={preset.id}
+                    onClick={() => handleChangeBackgroundPreset(preset.id)}
+                    className={`px-3 py-2.5 rounded-xl text-[10px] tracking-wider text-left border cursor-pointer transition-all ${
+                      backgroundPreset === preset.id
+                        ? 'border-zinc-800 dark:border-zinc-200 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 font-medium'
+                        : 'border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-white/5 text-zinc-500 dark:text-zinc-400'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full border border-black/10 dark:border-white/20" style={{ background: preset.swatch }} />
+                      {preset.name}
+                    </span>
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <button
+            onClick={() => setIsBackgroundMenuOpen((open) => !open)}
+            className={`group relative flex items-center justify-center gap-2 h-9 px-4 rounded-full border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/30 backdrop-blur-md transition-all duration-300 cursor-pointer ${
+              backgroundPreset === 'auto'
+                ? 'text-black/40 dark:text-white/35'
+                : 'text-amber-600 dark:text-amber-400 bg-white/35 dark:bg-zinc-900/35'
+            }`}
+            title="选择背景"
+          >
+            <Palette className="w-3.5 h-3.5" />
+            <span className="text-[10px] tracking-[0.22em] font-sans">{selectedBackgroundPreset.name}</span>
+            <span className="w-2.5 h-2.5 rounded-full border border-black/10 dark:border-white/20" style={{ background: selectedBackgroundPreset.swatch }} />
           </button>
         </div>
 
